@@ -26,8 +26,13 @@ class App:
         tweets_df = pd.json_normalize(tweets_dict['data'] ) 
         return tweets_df
 
+    #Retrieve all recent replies from the user's specified number of recent tweets (7 days max, max results=10)
     def fetch_tweets_replies(self,username):
         user_tweets=self.fetch_tweets(username)
-        
-        for conversation in user_tweets['conversation_id'].tolist():
-            self.fetch_replies(conversation)
+        replies_list=[]
+        for conversation_id in user_tweets['conversation_id'].tolist():
+            replies=self.fetch_replies(conversation_id)
+            replies['conversation_id']=conversation_id
+            replies_list.append(replies)
+        replies_df=pd.concat(replies_list,ignore_index=True)
+        return replies_df

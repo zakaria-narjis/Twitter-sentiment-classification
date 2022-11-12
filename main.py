@@ -1,18 +1,13 @@
 import tweepy
 import requests
 import pandas as pd
+import config
 
-consumer_key="QsUPTJrRilV4CJmlGnF3uFcQi"
-consumer_secret="WgzG5aU3398lXdgzecZH3az9WYhyDSG8S5TAAU8sUBh9eOwNWw"
-access_token="755913179595673601-y1HzykMtpT2zAvFeX9T1o7QqJHxYlG2"
-access_token_secret="nH0A0ORFLqOzgdL5dcA2tfUyKPbYD9x8JYnziZO0Qaorw"
-bearer_token="AAAAAAAAAAAAAAAAAAAAAAWpjAEAAAAAhKnoECdNTK3xLJt6v%2BT1wYxdbv8%3DjwXjxlsEhleFx589jEEqmHmSbW163haupZ3zuTrVxi67VWJgbX"
-
-client = tweepy.Client(bearer_token=bearer_token, 
-                        consumer_key=consumer_key, 
-                        consumer_secret=consumer_secret, 
-                        access_token=access_token, 
-                        access_token_secret=access_token_secret, 
+client = tweepy.Client(bearer_token=config.bearer_token, 
+                        consumer_key=config.consumer_key, 
+                        consumer_secret=config.consumer_secret, 
+                        access_token=config.access_token, 
+                        access_token_secret=config.access_token_secret, 
                         return_type = requests.Response,
                         wait_on_rate_limit=True)
 '''
