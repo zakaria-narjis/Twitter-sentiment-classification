@@ -31,6 +31,7 @@ class App:
             return None
         else:
             tweets_df = pd.json_normalize(tweets_dict['data']) 
+            tweets_df= tweets_df.drop('edit_history_tweet_ids',axis=1)
             return tweets_df
 
     #Retrieve all recent replies from the user's specified number of recent tweets (7 days max, max results=10)

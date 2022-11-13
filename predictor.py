@@ -11,6 +11,7 @@ class Predictor:
     def __init__(self,threshold=0.5):
         self.model=keras.models.load_model('model.h5',custom_objects={'KerasLayer':hub.KerasLayer})
         self.threshold=threshold 
+        
     def regex_filter(self,txt):
         regex_string = r'(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))'
         output=txt
