@@ -2,3 +2,6 @@ config.py
 /__pycache__
 test.ipynb
 test.csv
+tempCodeRunnerFile.py
+user_tweets.csv
+sentiments.csv
