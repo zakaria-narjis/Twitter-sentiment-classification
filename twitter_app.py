@@ -25,7 +25,7 @@ class App:
 
     def fetch_tweets(self,username):
         query = 'from:{usr} -is:retweet -is:reply'.format(usr=username)
-        tweets = self.client.search_recent_tweets(query,tweet_fields=['author_id','conversation_id'],max_results=10)
+        tweets = self.client.search_recent_tweets(query,tweet_fields=['author_id','conversation_id'],max_results=100)
         tweets_dict = tweets.json() 
         if tweets_dict['meta']['result_count']==0:
             return None
@@ -38,7 +38,7 @@ class App:
     def fetch_tweets_replies(self,username):
         user_tweets=self.fetch_tweets(username)
         if user_tweets is None:
-            return 'Couldn\'t find any tweet from this user'
+            return 0
         else:
             replies_list=[]
             for conversation_id in user_tweets['conversation_id'].tolist():
@@ -50,7 +50,7 @@ class App:
                     replies['conversation_id']=conversation_id
                     replies_list.append(replies)
             if replies_list==[]:
-                return 'Couldn\'t find any replies on the user\'s tweets'
+                return 1
             else:
                 replies_df=pd.concat(replies_list,ignore_index=True)
                 return user_tweets,replies_df
