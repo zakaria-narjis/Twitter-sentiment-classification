@@ -4,6 +4,7 @@ import pandas as pd
 import config
 from twitter_app import App
 from predictor import Predictor
+from streamlit_app import Streamlitapp
 
 app= App(bearer_token=config.bearer_token, 
                         consumer_key=config.consumer_key, 
@@ -12,7 +13,7 @@ app= App(bearer_token=config.bearer_token,
                         access_token_secret=config.access_token_secret)
 
 predictor=Predictor()
-user_tweets,tweets_replies=app.fetch_tweets_replies('tunguz')
-tweets_sentiments=predictor.predict_sentiment(tweets_replies)
-tweets_sentiments.to_csv('sentiments.csv',index=False)
-user_tweets.to_csv('user_tweets.csv',index=False)
+streamlit_app=Streamlitapp(predictor,app)
+
+if __name__=='__main__':
+    streamlit_app.run()

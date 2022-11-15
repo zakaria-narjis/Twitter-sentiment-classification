@@ -12,8 +12,8 @@ class App:
                         return_type = requests.Response,
                         wait_on_rate_limit=True)
 
-    def fetch_replies(self,conversation_id):
-        replies=self.client.search_recent_tweets('conversation_id:{id} -is:retweet'.format(id=conversation_id),tweet_fields=['author_id','created_at'],user_fields=['username'],expansions='author_id')                       
+    def fetch_replies(self,conversation_id,username):
+        replies=self.client.search_recent_tweets('conversation_id:{id} -is:retweet -from:{usr}'.format(id=conversation_id,usr=username),tweet_fields=['author_id','created_at'],user_fields=['username','location'],expansions='author_id')                       
         replies_dict=replies.json()
         if replies_dict['meta']['result_count']==0:
             return None
@@ -42,7 +42,7 @@ class App:
         else:
             replies_list=[]
             for conversation_id in user_tweets['conversation_id'].tolist():
-                replies=self.fetch_replies(conversation_id)
+                replies=self.fetch_replies(conversation_id,username)
                 if replies is None:
                     pass
                 else:
@@ -54,3 +54,36 @@ class App:
             else:
                 replies_df=pd.concat(replies_list,ignore_index=True)
                 return user_tweets,replies_df
+
+
+#BETA
+"""
+class App:
+    def __init__(self,bearer_token,consumer_key,consumer_secret,access_token,access_token_secret):
+        self.client = tweepy.Client(bearer_token=bearer_token, 
+                        consumer_key=consumer_key, 
+                        consumer_secret=consumer_secret, 
+                        access_token=access_token, 
+                        access_token_secret=access_token_secret, 
+                        return_type = requests.Response,
+                        wait_on_rate_limit=True)
+
+    def fetch_tweets_replies(self,username):
+        query = 'to:{usr}'.format(usr=username)
+        replies = self.client.search_recent_tweets(query,tweet_fields=['author_id','created_at','conversation_id'],user_fields=['username','location'],expansions='author_id')
+        replies_dict = replies.json() 
+        if replies_dict['meta']['result_count']==0:
+            return None
+        else:     
+            replies_data_df=pd.json_normalize(replies_dict['data']) 
+            replies_names_df=pd.json_normalize(replies_dict['includes']['users']) 
+            replies_names_df=replies_names_df.rename(columns={'id':'author_id'})
+            replies_df=pd.merge(replies_data_df,replies_names_df, on='author_id', how='left')
+            replies_df=replies_df.drop('edit_history_tweet_ids',axis=1)
+            replies_df=replies_df.drop(replies_df[replies_df.username == username].index)
+            if replies_df.empty==True:
+                return None
+            else:
+                return replies_df
+                """
+
