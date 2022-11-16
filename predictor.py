@@ -9,7 +9,7 @@ import re
 class Predictor:
 
     def __init__(self,threshold=0.5):
-        self.model=keras.models.load_model('model.h5',custom_objects={'KerasLayer':hub.KerasLayer})
+        self.model=keras.models.load_model('model.h5',custom_objects={'KerasLayer':hub.KerasLayer}, compile=False)
         self.threshold=threshold 
         
     def regex_filter(self,txt):
