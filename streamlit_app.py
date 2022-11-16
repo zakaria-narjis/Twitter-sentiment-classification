@@ -36,7 +36,19 @@ class Streamlitapp:
             with st.spinner('Analyzing replies sentiments...'):
                 tweets_sentiments=self.predictor.predict_sentiment(tweets_replies)
             return tweets_sentiments,1
-    
+
+    def generate_tweets_stats(self,df):
+        tweets_stats=df.copy()
+        tweets_stats=tweets_stats[['conversation_id','positive','negative']].groupby(['conversation_id']).sum().reset_index()       
+        tweets_stats['diff']=tweets_stats['positive']-tweets_stats['negative']
+        tweets_stats=tweets_stats.style.highlight_max(['positive'],color='green',axis=0)
+        tweets_stats=tweets_stats.highlight_min(['positive'],color='red',axis=0)
+        tweets_stats=tweets_stats.highlight_max(['negative'],color='red',axis=0)
+        tweets_stats=tweets_stats.highlight_min(['negative'],color='green',axis=0)
+        tweets_stats=tweets_stats.highlight_max(['diff'],color='green',axis=0)
+        tweets_stats=tweets_stats.highlight_min(['diff'],color='red',axis=0)
+        return tweets_stats
+
     def generate_total_data(self,df):
         total_df=pd.DataFrame(df['sentiments'].value_counts())
         total_df['label']=['Positive','Negative']
@@ -67,7 +79,8 @@ class Streamlitapp:
             total_df=self.generate_total_data(df)
             chart_df=self.generate_chart_data(df)
             (mostpositive,positive_count),(mostnegative,negative_count)=self.generate_max_data(df)
-            total,history,mpntr=st.tabs(['Total','History statistics','Repliers statistics'])
+            tweets_stats_df=self.generate_tweets_stats(df)
+            total,history,mpntr,tweets_stats=st.tabs(['Total','History statistics','Repliers statistics','Tweets statistics'])
             
             with total:
                 st.header('Total positive/negative sentiments')
@@ -81,8 +94,13 @@ class Streamlitapp:
                 st.header('Most positive/negative twitter repliers')
                 col1, col2= st.columns(2)
                 col1.metric(label='Most Positive',value=positive_count)
-                col1.write('[twitter.com/{user}]'.format(user=mostpositive)+'(https://www.twitter.com//{user})'.format(user=mostpositive))
+                col1.write('[twitter.com/{user}]'.format(user=mostpositive)+'(https://www.twitter.com/{user})'.format(user=mostpositive))
                 col2.metric(label='Most Negative',value=negative_count)
-                col2.write('[twitter.com/{user}]'.format(user=mostnegative)+'(https://www.twitter.com//{user})'.format(user=mostnegative))
+                col2.write('[twitter.com/{user}]'.format(user=mostnegative)+'(https://www.twitter.com/{user})'.format(user=mostnegative))
+
+            with tweets_stats:
+                st.header('Sentiments statistics for all the recent user tweets')
+                st.dataframe(tweets_stats_df)
+
         st.success('Finished successfully', icon="✅")
 
