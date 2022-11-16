@@ -13,7 +13,7 @@ class App:
                         wait_on_rate_limit=True)
 
     def fetch_replies(self,conversation_id,username):
-        replies=self.client.search_recent_tweets('conversation_id:{id} -is:retweet -from:{usr}'.format(id=conversation_id,usr=username),tweet_fields=['author_id','created_at'],user_fields=['username','location'],expansions='author_id')                       
+        replies=self.client.search_recent_tweets('conversation_id:{id} -is:retweet -from:{usr}'.format(id=conversation_id,usr=username),tweet_fields=['author_id','created_at'],user_fields=['username','location'],expansions='author_id',max_results=100)                       
         replies_dict=replies.json()
         if replies_dict['meta']['result_count']==0:
             return None
