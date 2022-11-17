@@ -19,7 +19,7 @@ This information can be used to understand how people feel about a particular to
 ### Developing the model
 We start by creating our machine learning model. The model is built using a pre-trained sentence embeddings based on feed-forward Neural-Net Language Models with pre-built OOV and trained on Google News 7B corpus (7 billion words). Then we add two dense layers of 16 neurons each and an output layer with one neuron and sigmoid activation function. The model takes a batch of sentences in a 1-D tensor of strings as input and encodes each one as a single 50-dimensional vector, then it computes the probability of a positive sentiment. 
 ![](assets/model.png) 
-We will use sentiment140 dataset with 1.6 million tweets to train our model (https://www.kaggle.com/datasets/kazanova/sentiment140?sort=votes).
+We will use sentiment140 dataset with 1.6 million tweets to train our model on sentiments classification. Visit this [kaggle](https://www.kaggle.com/datasets/kazanova/sentiment140?sort=votes) link for more details..
 You can find the pre-trained sentence embeddings layer handle link on Tensorflow hub [here](https://tfhub.dev/google/nnlm-en-dim50/2).
 ### Developing the application
 #### Twitter app
