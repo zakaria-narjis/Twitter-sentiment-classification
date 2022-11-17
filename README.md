@@ -38,6 +38,9 @@ The project is created with:
 * Numpy: 1.21.5
 
 ![](https://img.icons8.com/color/48/null/python--v1.png) ![](https://img.icons8.com/color/48/null/tensorflow.png) ![](https://img.icons8.com/color/48/null/numpy.png) ![](https://img.icons8.com/color/48/null/pandas.png) ![](assets/streamlit-icon-48x48.png) ![](assets/keras.png) ![](https://img.icons8.com/color/48/null/twitter--v1.png)
+## Train the model
+To train the model you can use my [notebook](https://github.com/zakaria-narjis/Twitter-sentiment-classification/blob/main/twitter-sentiment-classificator.ipynb).
+The model reached around 82% accuracy on test set in only 5 epochs. The model I'm using in this project was trained on 5 epochs, however you can increase the epochs as you want to reach it's maximum accuracy. The training use early stopping so you don't have to worry about over fitting the dataset. 
 ## Setup
 To run this project, you can either:
 ### Run it locally
