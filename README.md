@@ -60,5 +60,5 @@ conda install --file requirements.txt
 ```
 streamlit run main.py
 ```
-### Use the hosted version on streamlit Cloud
+### Use the hosted version on Streamlit Cloud
 https://twitter-sentiment-classification.streamlit.app/
