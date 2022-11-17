@@ -23,22 +23,24 @@ class Streamlitapp:
             self.display_analysis(username)
 
     def generate_analysis(self,username):
-        try:
-            with st.spinner('Fetching tweets...'):
+        with st.spinner('Fetching tweets...'):
+            try:
                 output=self.twitter_app.fetch_tweets_replies(username)
-            if output==0:
+            except:
                 st.error('No user or tweets was found with this username.', icon="🚨")
                 return None,None
-            elif output==1:
-                st.error('No replies was found to the user\'s tweets.', icon="🚨")
-                return None,None
-            else:
-                user_tweets,tweets_replies=output   
-                with st.spinner('Analyzing replies sentiments...'):
-                    tweets_sentiments=self.predictor.predict_sentiment(tweets_replies)
-                return tweets_sentiments,1
-        except:
+        if output==0:
             st.error('No user or tweets was found with this username.', icon="🚨")
+            return None,None
+        elif output==1:
+            st.error('No replies was found to the user\'s tweets.', icon="🚨")
+            return None,None
+        else:
+            user_tweets,tweets_replies=output   
+            with st.spinner('Analyzing replies sentiments...'):
+                tweets_sentiments=self.predictor.predict_sentiment(tweets_replies)
+            return tweets_sentiments,1
+        
     def generate_tweets_stats(self,df):
         tweets_stats=df.copy()
         tweets_stats=tweets_stats[['conversation_id','positive','negative']].groupby(['conversation_id']).sum().reset_index()       
