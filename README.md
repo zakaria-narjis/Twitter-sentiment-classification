@@ -2,7 +2,7 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [In a nutshell](#in-a-nutshell)
+* [Development](#development)
 * [Technologies](#technologies)
 * [Setup](#setup)
 
@@ -15,16 +15,27 @@ Machine learning algorithms can be used to automatically classify tweets as posi
 
 This information can be used to understand how people feel about a particular topic. It can also be used to track the sentiment of a brand over time.
 
-## In a nutshell
+## Development 
+### Developing the model
 We start by creating our machine learning model. The model is built using a pre-trained sentence embeddings based on feed-forward Neural-Net Language Models with pre-built OOV and trained on Google News 7B corpus (7 billion words). Then we add two dense layers of 16 neurons each and an output layer with one neuron and sigmoid activation function. The model takes a batch of sentences in a 1-D tensor of strings as input and encodes each one as a single 50-dimensional vector, then it computes the probability of a positive sentiment. 
- 
+![](assets/model.png) 
+We will use sentiment140 dataset with 1.6 million tweets to train our model (https://www.kaggle.com/datasets/kazanova/sentiment140?sort=votes).
+### Developing the application
+#### Twitter app
+To start using twitter api with Tweepy library, we need to setup our Twitter API authentication credentials first. https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api
+#### Streamlit app
+To setup a front end for our project and display the results made by the model predictions we will develop a Streamlit app. Streamlit is an open source app framework in Python language. It helps us create web apps for data science and machine learning in a short time.
 
 ## Technologies
-Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
-	
+The project is created with:
+* Tensorflow: 2.9.1
+* Pandas: 1.4.4
+* Keras: 2.9.0
+* Tweepy: 4.12.1
+* Streamlit: 1.14.1
+* Numpy: 1.21.5
+
+![](https://img.icons8.com/color/48/null/tensorflow.png) ![](https://img.icons8.com/color/48/null/numpy.png) ![](https://img.icons8.com/color/48/null/pandas.png) ![](assets/streamlit-icon-48x48.png)
 ## Setup
 To run this project, install it locally using npm:
 
