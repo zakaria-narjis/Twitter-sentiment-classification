@@ -24,10 +24,11 @@ We will use sentiment140 dataset with 1.6 million tweets to train our model (htt
 #### Twitter app
 To start using twitter api with Tweepy library, we need to setup our Twitter API authentication credentials first. https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api
 #### Streamlit app
-To setup a front end for our project and display the results made by the model predictions we will develop a Streamlit app. Streamlit is an open source app framework in Python language. It helps us create web apps for data science and machine learning in a short time.
+To setup a front end for our project and display the results made by the model predictions we developed a Streamlit app. Streamlit is an open source app framework in Python language. It helps us create web apps for data science and machine learning in a short time.
 
 ## Technologies
 The project is created with:
+* Python: 3.10.8
 * Tensorflow: 2.9.1
 * Pandas: 1.4.4
 * Keras: 2.9.0
@@ -35,12 +36,25 @@ The project is created with:
 * Streamlit: 1.14.1
 * Numpy: 1.21.5
 
-![](https://img.icons8.com/color/48/null/tensorflow.png) ![](https://img.icons8.com/color/48/null/numpy.png) ![](https://img.icons8.com/color/48/null/pandas.png) ![](assets/streamlit-icon-48x48.png)
+![](https://img.icons8.com/color/48/null/python--v1.png) ![](https://img.icons8.com/color/48/null/tensorflow.png) ![](https://img.icons8.com/color/48/null/numpy.png) ![](https://img.icons8.com/color/48/null/pandas.png) ![](assets/streamlit-icon-48x48.png) ![](assets/keras.png) ![](https://img.icons8.com/color/48/null/twitter--v1.png)
 ## Setup
-To run this project, install it locally using npm:
-
+To run this project, you can either:
+### Run it locally
+#### Clone the repo
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+$ git clone https://github.com/zakaria-narjis/Twitter-sentiment-classification
 ```
+#### Install dependencies in your environment or create another one
+```
+$ pip3 install requirement.txt
+```
+Or
+```
+conda install --file requirements.txt
+```
+#### Run main.py
+```
+streamlit run main.py
+```
+### Use the hosted version on streamlit Cloud
+https://twitter-sentiment-classification.streamlit.app/
