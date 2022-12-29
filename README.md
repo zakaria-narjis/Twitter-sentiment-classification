@@ -46,7 +46,7 @@ To run this project, you can either:
 ### Run it locally
 #### Clone the repo
 ```
-$ git clone-lfs https://github.com/zakaria-narjis/Twitter-sentiment-classification
+$ git lfs clone https://github.com/zakaria-narjis/Twitter-sentiment-classification
 ```
 #### Install dependencies in your environment or create another one
 ```
