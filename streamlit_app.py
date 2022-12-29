@@ -54,8 +54,7 @@ class Streamlitapp:
         return tweets_stats
 
     def generate_total_data(self,df):
-        total_df=pd.DataFrame(df['sentiments'].value_counts())
-        total_df['label']=['Positive','Negative']
+        total_df=pd.DataFrame(data={'sentiments':[df['sentiments'].to_list().count(1),df['sentiments'].to_list().count(0)],'label':['Positive','Negative']})
         return total_df
 
     def generate_chart_data(self,df): 
