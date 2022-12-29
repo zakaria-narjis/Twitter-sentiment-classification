@@ -11,11 +11,11 @@ class Streamlitapp:
         pass
     
     def run(self):
-        st.title('Twitter Sentiments Analyser')
+        st.title('Twitter Sentiments Analyzer')
         st.header('Description:')
-        st.write('Twitter Sentiments Analyser is a streamlit app used for sentiment analysis on twitter. The application use machine learning and natural language processing to automaticaly identify and analyze feedback through replies on tweets.')
-        st.write('The app can be very usefull for detecting insights on how you can improve your product or service. By analyzing how people talk about your brand on Twitter, you can understand whether they like a new feature you just launched for example.')
-        st.write('You can start by entering a twitter username, the app will automaticaly analyse all the recents replies on the user\'s recent tweets (7 days max and 100 replies/tweets due to API limitations) and display the results.')
+        st.write('Twitter Sentiments Analyzer is a Streamlit app used for sentiment analysis on twitter. The application use machine learning and natural language processing to automaticaly identify and analyze feedback through replies on tweets.')
+        st.write('The app can be very useful for detecting insights on how you can improve your product or service. By analyzing how people talk about your brand on Twitter, you can understand whether they like a new feature you just launched for example.')
+        st.write('You can start by entering a twitter username, the app will automatically analyze all the recent replies on the user\'s recent tweets (7 days max and 100 replies/tweets due to API limitations) and display the results.')
         st.write('You can find more details and the whole project on my [repo](https://github.com/zakaria-narjis/Twitter-sentiment-classification).')
         st.header('Application:')
         username=st.text_input('Twitter user name')  
